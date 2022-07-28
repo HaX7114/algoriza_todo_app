@@ -17,7 +17,7 @@ class ScheduleTaskContainer extends StatelessWidget {
     required this.taskStatus,
   }) : super(key: key);
   final color;
-  final TimeOfDay time;
+  final time;
   final taskID;
   final isDone;
   final title;
@@ -27,7 +27,7 @@ class ScheduleTaskContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 7.0),
       child: Container(
-        height: 75.0,
+        height: 80.0,
         width: double.infinity,
         decoration: BoxDecoration(
           color: color,
@@ -43,7 +43,10 @@ class ScheduleTaskContainer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     MyText(
-                      text: time.format(context),
+                      text: TimeOfDay(
+                        hour: int.parse(time.substring(11, 12)),
+                        minute: int.parse(time.substring(13, 15)),
+                      ).format(context),
                       size: fontSizeM - 3,
                       color: whiteColor,
                     ),

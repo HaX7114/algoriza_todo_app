@@ -165,57 +165,60 @@ class _WeeklyDatePickerState extends State<WeeklyDatePicker> {
           // Bugfix, the transparent container makes the GestureDetector fill the Expanded
           duration: const Duration(milliseconds: 300),
           color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
-              color: isSelected
-                  ? widget.currentSelectedBackgroundColorByTap
-                  : dateTime.isSameDateAs(_todaysDateTime)
-                      ? widget.selectedBackgroundColor
-                      : whiteColor,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 4.0),
-                  child: Text(
-                    weekday,
-                    style: GoogleFonts.poppins(
-                      fontSize: 12.0,
-                      color: isSelected
-                          ? widget.currentSelectedDayNameColorByTap
-                          : dateTime.isSameDateAs(_todaysDateTime)
-                              ? widget.weekdayTextColor
-                              : blackColor,
-                    ),
-                  ),
-                ),
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.fastLinearToSlowEaseIn,
-                  padding: const EdgeInsets.all(1.0),
-                  decoration: const BoxDecoration(
-                    // Border around today's date
-                    color: transparentColor,
-                  ),
-                  child: CircleAvatar(
-                    backgroundColor: transparentColor,
-                    radius: 14.0,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                color: isSelected
+                    ? widget.currentSelectedBackgroundColorByTap
+                    : dateTime.isSameDateAs(_todaysDateTime)
+                        ? widget.selectedBackgroundColor
+                        : whiteColor,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4.0),
                     child: Text(
-                      '${dateTime.day}',
+                      weekday,
                       style: GoogleFonts.poppins(
-                        fontSize: 13.0,
+                        fontSize: 12.0,
                         color: isSelected
-                            ? widget.currentSelectedDayNumberColorByTap
+                            ? widget.currentSelectedDayNameColorByTap
                             : dateTime.isSameDateAs(_todaysDateTime)
-                                ? whiteColor
+                                ? widget.weekdayTextColor
                                 : blackColor,
                       ),
                     ),
                   ),
-                ),
-              ],
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    padding: const EdgeInsets.all(1.0),
+                    decoration: const BoxDecoration(
+                      // Border around today's date
+                      color: transparentColor,
+                    ),
+                    child: CircleAvatar(
+                      backgroundColor: transparentColor,
+                      radius: 14.0,
+                      child: Text(
+                        '${dateTime.day}',
+                        style: GoogleFonts.poppins(
+                          fontSize: 13.0,
+                          color: isSelected
+                              ? widget.currentSelectedDayNumberColorByTap
+                              : dateTime.isSameDateAs(_todaysDateTime)
+                                  ? whiteColor
+                                  : blackColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

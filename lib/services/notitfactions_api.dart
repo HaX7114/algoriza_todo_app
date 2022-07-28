@@ -7,6 +7,7 @@ class NotificationAPI {
   //Reminders
   static const bool doNotRemindMe = false;
   static const bool remindMe = true;
+
   static const int reminderOneDayBefore = 1;
   static const int reminderOneHourBefore = 60;
   static const int reminderThirtyMinBefore = 30;

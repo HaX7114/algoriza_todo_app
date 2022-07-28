@@ -20,7 +20,8 @@ class ScheduleTasks extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => ScheduleTasksCubit()
-          ..getAllTasks(DateFormat.yMMMd().format(DateTime.now())),
+          ..getAllTasks(DateTime
+              .now()), //Convert because we saved the date on this format in the DB
         child: BlocConsumer<ScheduleTasksCubit, ScheduleTasksStates>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -55,13 +56,15 @@ class ScheduleTasks extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: WeeklyDatePicker(
+                          currentSelectedBackgroundColorByTap: blueColor,
                           selectedDay: scheduleTasksCubit.selectedDay,
                           backgroundColor: whiteColor,
                           enableWeeknumberText: false,
                           selectedBackgroundColor: greenColor,
                           weekdayTextColor: whiteColor,
                           changeDay: (value) {
-                            debugPrint(value.toString());
+                            scheduleTasksCubit.selectedDay = value;
+                            scheduleTasksCubit.getAllTasks(value);
                           },
                         ),
                       ),

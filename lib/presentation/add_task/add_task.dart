@@ -3,6 +3,7 @@ import 'package:algoriza_todo_app/presentation/add_task/add_task_cubit/add_task_
 import 'package:algoriza_todo_app/presentation/add_task/widgets/titled_color_palette.dart';
 import 'package:algoriza_todo_app/presentation/add_task/widgets/titled_container.dart';
 import 'package:algoriza_todo_app/presentation/add_task/widgets/titled_text_field.dart';
+import 'package:algoriza_todo_app/services/notitfactions_api.dart';
 import 'package:algoriza_todo_app/utils/functions/toaster.dart';
 import 'package:algoriza_todo_app/utils/styles/spaces.dart';
 import 'package:flutter/cupertino.dart';
@@ -145,9 +146,18 @@ class AddTask extends StatelessWidget {
                   ),
                   ButtomButton(
                     buttonText: 'Create a task',
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        addTaskCubit.setToDataBase();
+                        int taskID = await addTaskCubit.setToDataBase();
+                        NotificationAPI.setNotificationSchedule(
+                          hour: addTaskCubit.startTime.hour,
+                          min: addTaskCubit.startTime.minute,
+                          notificationIndex: taskID,
+                          reminderChoice: addTaskCubit.setReminder,
+                          repeating: addTaskCubit.setRepeat,
+                          content: addTaskCubit.textController.text,
+                          setReminder: addTaskCubit.setReminder,
+                        );
                       }
                     },
                   ),

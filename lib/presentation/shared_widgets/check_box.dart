@@ -66,14 +66,14 @@ class MyCheckBoxState extends State<MyCheckBox> {
               Radius.circular(widget.borderRadius - 3),
             ),
             child: AnimatedContainer(
-              width: _boxWidth,
-              height: _boxHeight,
+              width: widget.isDone ? 30.0 : _boxWidth,
+              height: widget.isDone ? 30.0 : _boxHeight,
               duration: const Duration(milliseconds: 130),
               color: widget.isDone ? greenColor : widget.color,
               child: Icon(
                 Icons.check,
-                color: widget.iconColor,
-                size: _iconSize,
+                color: widget.isDone ? whiteColor : widget.iconColor,
+                size: widget.isDone ? 20.0 : _iconSize,
               ),
             ),
           ),

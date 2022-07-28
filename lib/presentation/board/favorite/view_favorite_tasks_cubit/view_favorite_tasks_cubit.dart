@@ -29,7 +29,7 @@ class ViewFavoriteTasksCubit extends Cubit<ViewFavoriteTasksStates> {
       favoriteTasks.add(Task(
         id: element["ID"],
         title: element["title"],
-        date: DateTime.parse(element["date"]),
+        date: element["date"],
         startTime: element["startTime"],
         endTime: element["endTime"],
         color: Color(int.parse(element["color"])),
